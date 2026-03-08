@@ -10,9 +10,9 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
 app.use(cors({ origin: allowedOrigins }));
 
 app.use(express.json());
-// Health check endpoint
+// Redirect root to node-vibrant documentation
 app.get('/', (req, res) => {
-    res.json({ status: 'ok' });
+    res.redirect('https://vibrant.dev/');
 });
 
 app.post('/api/analyze', async (req, res) => {
