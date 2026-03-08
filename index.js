@@ -1,6 +1,14 @@
 const express = require('express');
+const cors = require('cors');
 const { Vibrant } = require('node-vibrant/node');
 const app = express();
+
+// Allow origins defined in ALLOWED_ORIGINS env var (comma-separated)
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
+    : [];
+app.use(cors({ origin: allowedOrigins }));
+
 app.use(express.json());
 // Health check endpoint
 app.get('/', (req, res) => {
